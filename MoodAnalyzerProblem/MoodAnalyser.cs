@@ -4,15 +4,19 @@ using System.Text;
 
 namespace MoodAnalyzerProblem
 {
-    class MoodAnalyser
+    public class MoodAnalyser
     {
-        public string AnalyseMood(string message)
+        private string message;
+        public MoodAnalyser(string message)
+        {
+            this.message = message;
+        }
+        public string AnalyseMood()
         {
             if (message.ToUpper().Contains("SAD"))
                 return "Sad Mood";
             else
                 return "Happy Mood";
         }
-
-    }
+    }           
 }
