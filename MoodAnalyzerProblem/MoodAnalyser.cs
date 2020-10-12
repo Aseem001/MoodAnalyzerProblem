@@ -6,15 +6,17 @@ namespace MoodAnalyzerProblem
 {
     public class MoodAnalyser
     {
-        private string message;
-        public MoodAnalyser(string message)
-        {
-            this.message = message;            
-        }
         public MoodAnalyser()
         {
             Console.WriteLine("Default Constructor");
         }
+
+        private string message;
+        public MoodAnalyser(string message)
+        {
+            this.message = message;
+            Console.WriteLine("Parameterized Constuctor");
+        }       
         public string AnalyseMood()
         {
             try

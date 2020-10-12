@@ -20,6 +20,14 @@ namespace MoodAnalyzerProblem
             {
                 Console.WriteLine(exception.Message);
             }
+            try
+            {
+                MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "happy");
+            }
+            catch (MoodAnalyserCustomException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
         }
     }
 }
