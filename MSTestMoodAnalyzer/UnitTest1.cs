@@ -121,5 +121,19 @@ namespace MSTestMoodAnalyzer
                 Assert.AreEqual("Exception: constructor not found in the class", exception.Message);
             }
         }
+
+        /// <summary>
+        /// UC 5.1 : Given mood analyser class name and message should create mood analyser parameterized object.
+        /// </summary>
+        [TestMethod]
+        public void GivenMoodAnalyserClassNameAndMessage_ReturnMoodAnalyserParameterizedObject()
+        {
+            //Arrange
+            var expected = new MoodAnalyser("happy");
+            //Act
+            object result = MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "happy");
+            //Assert          
+            expected.Equals(result);
+        }
     }
 }
