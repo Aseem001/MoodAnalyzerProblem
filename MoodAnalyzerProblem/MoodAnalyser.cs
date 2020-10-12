@@ -9,7 +9,11 @@ namespace MoodAnalyzerProblem
         private string message;
         public MoodAnalyser(string message)
         {
-            this.message = message;
+            this.message = message;            
+        }
+        public MoodAnalyser()
+        {
+            Console.WriteLine("Default Constructor");
         }
         public string AnalyseMood()
         {
@@ -39,7 +43,6 @@ namespace MoodAnalyzerProblem
                 Console.WriteLine(exception.Message);
                 return exception.Message;
             }
-            
         }
     }           
 }
