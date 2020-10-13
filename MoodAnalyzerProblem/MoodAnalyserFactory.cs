@@ -39,7 +39,7 @@ namespace MoodAnalyzerProblem
             }
             else
             {
-                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Exception: constructor not found in the class");
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Exception: constructor not found");
             }
         }
 
@@ -63,8 +63,8 @@ namespace MoodAnalyzerProblem
             {
                 if (type.Name.Equals(constructorName))
                 {
-                    ConstructorInfo construt = type.GetConstructor(new[] { typeof(string) });
-                    Object obj = construt.Invoke(new object[] { message });
+                    ConstructorInfo construct = type.GetConstructor(new[] { typeof(string) });
+                    Object obj = construct.Invoke(new object[] { message });
                     return obj;
                 }
                 else
@@ -74,6 +74,6 @@ namespace MoodAnalyzerProblem
             {
                 throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "Exception: class not found");
             }
-        }
+        }        
     }
 }

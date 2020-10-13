@@ -22,7 +22,7 @@ namespace MoodAnalyzerProblem
             }
             try
             {
-                MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "happy");
+                MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserDifferent", "happy");
             }
             catch (MoodAnalyserCustomException exception)
             {

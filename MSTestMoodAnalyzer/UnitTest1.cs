@@ -118,10 +118,10 @@ namespace MSTestMoodAnalyzer
             catch (MoodAnalyserCustomException exception)
             {
                 //Assert
-                Assert.AreEqual("Exception: constructor not found in the class", exception.Message);
+                Assert.AreEqual("Exception: constructor not found", exception.Message);
             }
         }
-
+        
         /// <summary>
         /// UC 5.1 : Given mood analyser class name and message should create mood analyser parameterized object.
         /// </summary>
@@ -134,6 +134,42 @@ namespace MSTestMoodAnalyzer
             object result = MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "happy");
             //Assert          
             expected.Equals(result);
+        }
+
+        /// <summary>
+        /// UC 5.2 : Given an improper class name should throw mood analysis exception.
+        /// </summary>
+        [TestMethod]
+        public void UC5GivenImproperClassName_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                //Act
+                object result = MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblemDifferent.MoodAnalyser", "MoodAnalyser", "happy");
+            }
+            catch (MoodAnalyserCustomException exception)
+            {
+                //Assert
+                Assert.AreEqual("Exception: class not found", exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// UC 5.3 : Given an improper constructor name should throw mood analysis exception.
+        /// </summary>
+        [TestMethod]
+        public void UC5GivenImproperConstructorName_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                //Act
+                object result = MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserDifferent", "happy");
+            }
+            catch (MoodAnalyserCustomException exception)
+            {
+                //Assert
+                Assert.AreEqual("Exception: constructor not found in the class", exception.Message);
+            }
         }
     }
 }
