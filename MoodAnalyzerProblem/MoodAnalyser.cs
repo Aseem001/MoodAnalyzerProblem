@@ -11,7 +11,7 @@ namespace MoodAnalyzerProblem
             Console.WriteLine("Default Constructor");
         }
 
-        private string message;
+        public string message;
         public MoodAnalyser(string message)
         {
             this.message = message;
