@@ -15,7 +15,7 @@ namespace MoodAnalyzerProblem
         public MoodAnalyser(string message)
         {
             this.message = message;
-            Console.WriteLine("Parameterized Constuctor");
+            Console.WriteLine("Parameterized Constructor");
         }       
         public string AnalyseMood()
         {
