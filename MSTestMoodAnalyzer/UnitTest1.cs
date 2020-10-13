@@ -81,7 +81,7 @@ namespace MSTestMoodAnalyzer
             //Arrange
             var expected = new MoodAnalyser();
             //Act
-            object result = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser");
+            object result = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser",null);
             //Assert
             expected.Equals(result);
         }
@@ -95,7 +95,7 @@ namespace MSTestMoodAnalyzer
             try
             {
                 //Act
-                object result = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblemDifferent.MoodAnalyser", "MoodAnalyser");
+                object result = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblemDifferent.MoodAnalyser", "MoodAnalyser",null);
             }
             catch (MoodAnalyserCustomException exception)
             {
@@ -113,7 +113,7 @@ namespace MSTestMoodAnalyzer
             try
             {
                 //Act
-                object result = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserDifferent");
+                object result = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserDifferent",null);
             }
             catch (MoodAnalyserCustomException exception)
             {
@@ -131,7 +131,7 @@ namespace MSTestMoodAnalyzer
             //Arrange
             var expected = new MoodAnalyser("happy");
             //Act
-            object result = MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "happy");
+            object result = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "happy");
             //Assert          
             expected.Equals(result);
         }
@@ -145,7 +145,7 @@ namespace MSTestMoodAnalyzer
             try
             {
                 //Act
-                object result = MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblemDifferent.MoodAnalyser", "MoodAnalyser", "happy");
+                object result = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblemDifferent.MoodAnalyser", "MoodAnalyser", "happy");
             }
             catch (MoodAnalyserCustomException exception)
             {
@@ -163,12 +163,12 @@ namespace MSTestMoodAnalyzer
             try
             {
                 //Act
-                object result = MoodAnalyserFactory.CreateMoodAnalyserParameterizedObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserDifferent", "happy");
+                object result = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserDifferent", "happy");
             }
             catch (MoodAnalyserCustomException exception)
             {
                 //Assert
-                Assert.AreEqual("Exception: constructor not found in the class", exception.Message);
+                Assert.AreEqual("Exception: constructor not found", exception.Message);
             }
         }
     }

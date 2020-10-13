@@ -9,18 +9,19 @@ namespace MoodAnalyzerProblem
     public class MoodAnalyserFactory
     {
         /// <summary>
-        /// UC 4 -  Added method CreateMoodAnalyserObject to create MoodAnalyser Object with default constructor
+        /// UC4 & UC5 : Creates the mood analyser object with either default constructor or parameterized constructor according to message
         /// </summary>
         /// <param name="className">Name of the class.</param>
         /// <param name="constructorName">Name of the constructor.</param>
+        /// <param name="message">The message if it is null default constructor is called else parameterized one</param>
         /// <returns></returns>
         /// <exception cref="MoodAnalyserCustomException">
         /// Exception: class not found
         /// or
-        /// Exception: constructor not found in the class
+        /// Exception: constructor not found
         /// </exception>
-        public static object CreateMoodAnalyserObject(string className, string constructorName)
-        {
+        public static object CreateMoodAnalyserObject(string className, string constructorName,string message)
+        {            
             string pattern = @"." + constructorName + "$";
             var result = Regex.Match(className, pattern);
             if (result.Success)
@@ -29,7 +30,15 @@ namespace MoodAnalyzerProblem
                 {
                     Assembly assembly = Assembly.GetExecutingAssembly();
                     Type moodAnalyserType = assembly.GetType(className);
-                    var res = Activator.CreateInstance(moodAnalyserType);
+                    object res;
+                    if(message==null)
+                    {
+                        res = Activator.CreateInstance(moodAnalyserType, null);
+                    }
+                    else
+                    {
+                        res = Activator.CreateInstance(moodAnalyserType, message);
+                    }                                       
                     return res;
                 }
                 catch (ArgumentNullException)
@@ -41,39 +50,6 @@ namespace MoodAnalyzerProblem
             {
                 throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Exception: constructor not found");
             }
-        }
-
-        /// <summary>
-        /// UC 5 - Create CreateMoodAnalyserParameterizedObject to create MoodAnalyser Object with parameterized constructor
-        /// </summary>
-        /// <param name="className">Name of the class.</param>
-        /// <param name="constructorName">Name of the constructor.</param>
-        /// <param name="message">The message.</param>
-        /// <returns></returns>
-        /// <exception cref="MoodAnalyserCustomException">
-        /// constructor not found
-        /// or
-        /// class not found
-        /// </exception>
-        public static object CreateMoodAnalyserParameterizedObject(string className, string constructorName, string message)
-        {
-            Type type = typeof(MoodAnalyser);
-
-            if (type.Name.Equals(className) || type.FullName.Equals(className))
-            {
-                if (type.Name.Equals(constructorName))
-                {
-                    ConstructorInfo construct = type.GetConstructor(new[] { typeof(string) });
-                    Object obj = construct.Invoke(new object[] { message });
-                    return obj;
-                }
-                else
-                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Exception: constructor not found in the class");
-            }
-            else
-            {
-                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "Exception: class not found");
-            }
-        }        
+        }                
     }
 }
