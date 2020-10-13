@@ -14,12 +14,20 @@ namespace MoodAnalyzerProblem
             ReflectionClass.Test();
             try
             {
-                MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser",null);
+                MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", null);
             }
             catch (MoodAnalyserCustomException exception)
             {
                 Console.WriteLine(exception.Message);
-            }            
+            }
+            try
+            {
+                Console.WriteLine(MoodAnalyserFactory.InvokeAnalyseMood("Happy", "AnalyseMood")); 
+            }
+            catch (MoodAnalyserCustomException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
         }
     }
 }
