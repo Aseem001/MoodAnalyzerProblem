@@ -9,8 +9,9 @@ namespace MoodAnalyzerProblem
         {
             Type type = Type.GetType("MoodAnalyzerProblem.Customer");
 
+            Console.WriteLine("\nClass details:");
             ///printing fullname
-            Console.WriteLine("\nFullName is {0} ",type.FullName);
+            Console.WriteLine("FullName is {0} ",type.FullName);
 
             ///printing class name
             Console.WriteLine("ClassName is {0} ",type.Name);
