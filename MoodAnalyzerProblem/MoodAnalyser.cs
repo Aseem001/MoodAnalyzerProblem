@@ -6,24 +6,42 @@ namespace MoodAnalyzerProblem
 {
     public class MoodAnalyser
     {
+        /// <summary>
+        /// Default constructor of the MoodAnalyser class
+        /// </summary>
         public MoodAnalyser()
         {
             Console.WriteLine("Default Constructor");
         }
 
         public string message;
+
+        /// <summary>
+        /// Parameterized constructor of the MoodAnalyser class
+        /// </summary>
+        /// <param name="message">The message.</param>
         public MoodAnalyser(string message)
         {
             this.message = message;
             Console.WriteLine("Parameterized Constructor");
-        }       
+        }
+
+        /// <summary>
+        /// Analyses the mood on the basis of message in the string 
+        /// </summary>
+        /// <returns> Happy Mood or Sad Mood or exception message</returns>
+        /// <exception cref="MoodAnalyzerProblem.MoodAnalyserCustomException">
+        /// Mood should not be empty
+        /// or
+        /// Mood should not be null
+        /// </exception>
         public string AnalyseMood()
         {
             try
             {
                 if (message.Equals(string.Empty))
                 {
-                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.EMPTY_MESSAGE, "Mood should not be empty");
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.EMPTY_MESSAGE, "Mood should not be empty");                    
                 }                
                 if (message.ToUpper().Contains("SAD"))
                 {
@@ -44,7 +62,7 @@ namespace MoodAnalyzerProblem
             {
                 Console.WriteLine(exception.Message);
                 return exception.Message;
-            }
+            }           
         }
     }           
 }

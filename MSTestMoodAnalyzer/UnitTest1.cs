@@ -81,7 +81,7 @@ namespace MSTestMoodAnalyzer
             //Arrange
             var expected = new MoodAnalyser();
             //Act
-            object result = MoodAnalyserReflector.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser",null);
+            object result = MoodAnalyserReflector.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser");
             //Assert
             expected.Equals(result);
         }
@@ -95,7 +95,7 @@ namespace MSTestMoodAnalyzer
             try
             {
                 //Act
-                object result = MoodAnalyserReflector.CreateMoodAnalyserObject("MoodAnalyzerProblemDifferent.MoodAnalyser", "MoodAnalyser",null);
+                object result = MoodAnalyserReflector.CreateMoodAnalyserObject("MoodAnalyzerProblemDifferent.MoodAnalyser", "MoodAnalyser");
             }
             catch (MoodAnalyserCustomException exception)
             {
@@ -113,7 +113,7 @@ namespace MSTestMoodAnalyzer
             try
             {
                 //Act
-                object result = MoodAnalyserReflector.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserDifferent",null);
+                object result = MoodAnalyserReflector.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserDifferent");
             }
             catch (MoodAnalyserCustomException exception)
             {
@@ -223,17 +223,17 @@ namespace MSTestMoodAnalyzer
         /// </summary>
         [TestMethod]
         public void SetFieldWhenImproper_ShouldThrowMoodAnalysisException()
-        {
+        {           
             try
             {
                 //Act
                 object result = MoodAnalyserReflector.SetField("HAPPY", "mes");
             }
             catch (MoodAnalyserCustomException exception)
-            {
+            {                
                 //Assert
                 Assert.AreEqual("Exception: Field is not found", exception.Message);
-            }
+            }            
         }
 
         /// <summary>
