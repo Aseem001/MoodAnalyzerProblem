@@ -20,10 +20,10 @@ namespace MoodAnalyzerProblem
         /// or
         /// Exception: constructor not found
         /// </exception>
-        public static object CreateMoodAnalyserObject(string className, string constructorName,string message)
-        {            
+        public static object CreateMoodAnalyserObject(string className, string constructorName,string message = null)
+        {               
             string pattern = @"." + constructorName + "$";
-            var result = Regex.Match(className, pattern);
+            var result = Regex.Match(className, pattern);           
             if (result.Success)
             {
                 try
@@ -31,18 +31,14 @@ namespace MoodAnalyzerProblem
                     Assembly assembly = Assembly.GetExecutingAssembly();
                     Type moodAnalyserType = assembly.GetType(className);
                     object res;
-                    if(message==null)
-                    {
-                        res = Activator.CreateInstance(moodAnalyserType, null);
-                    }
-                    else
-                    {
-                        res = Activator.CreateInstance(moodAnalyserType, message);
-                    }                                       
+                    if (message==null)                 
+                        res = Activator.CreateInstance(moodAnalyserType, null);                  
+                    else                    
+                        res = Activator.CreateInstance(moodAnalyserType, message);                                                         
                     return res;
                 }
                 catch (ArgumentNullException)
-                {
+                {                    
                     throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "Exception: class not found");
                 }                
             }
@@ -53,7 +49,7 @@ namespace MoodAnalyzerProblem
         }
 
         /// <summary>
-        /// Invokes the AnalyseMood method and returns message indicating mood type.
+        /// UC 6 : Invokes the AnalyseMood method and returns message indicating mood type.
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="methodName">Name of the method.</param>
@@ -63,7 +59,7 @@ namespace MoodAnalyzerProblem
         {
             try
             {
-                Type type = Type.GetType("MoodAnalyzerProblem.MoodAnalyser");
+                Type type = Type.GetType("MoodAnalyzerProblem.MoodAnalyser");                
                 object moodAnalyserObject = MoodAnalyserReflector.CreateMoodAnalyserObject("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", message);
                 MethodInfo methodInfo = type.GetMethod(methodName);
                 object mood = methodInfo.Invoke(moodAnalyserObject, null);
@@ -76,7 +72,7 @@ namespace MoodAnalyzerProblem
         }
 
         /// <summary>
-        /// Used to change the message field dynamically using reflection
+        /// UC 7 : Used to change the message field dynamically using reflection
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="fieldName">Name of the field.</param>
